@@ -25,10 +25,11 @@ screen.onkey(paddle_2.move_down, "s")
 
 screen.update()
 
+score_1.score = 0
+score_2.score = 0
+
 game_on = True
 while game_on:
-    score_1 = 0
-    score_2 = 0
     time.sleep(0.1)
     screen.update()
 
@@ -41,13 +42,17 @@ while game_on:
     if ball.ycor() > WALL_COORDINATE or ball.ycor() < -WALL_COORDINATE:
         ball.bounce_y()
 
-    if ball.xcor() > PADDLE_POSITION[0]:
+   ##when the ball hits the paddle
+    if ball.distance(paddle_1) < 50 and ball.xcor() > 310 or ball.distance(paddle_2) < 50 and ball.xcor() < -310:
         ball.bounce_x()
-        score_1.update_score()
+
+    ###
+    if ball.xcor() > 380:
         ball.reset_position()
-    if ball.xcor() < -PADDLE_POSITION[0]:
-        ball.bounce_x()
         score_2.update_score()
+    if ball.xcor() < -380:
         ball.reset_position()
+        score_1.update_score()
+
 
 screen.exitonclick()
