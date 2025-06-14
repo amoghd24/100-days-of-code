@@ -46,4 +46,8 @@ ehthumbs.db
 Thumbs.db
 
 # Logs
-*.log 
+*.log
+
+# Exclude .env files and other common Python artifacts
+.env
+*.pyc 
